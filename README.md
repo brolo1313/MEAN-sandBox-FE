@@ -4,9 +4,13 @@ For state managment was choosed **Angualr Signals**.
 Angular Material has been chose as main UI library , moreover bootstrap-grid i use for  grid system.
 I was made decision to adding skeleton for better UX.
 
+a {
+  text-decoration: none;
+}
+
 <p align='center'>
  <a href="#">
-    <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" />
+    <img style="text-decoration:none" src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" />
   </a>&nbsp;&nbsp;
   <a href="#">
   <img alt="GitHub Repo stars" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
