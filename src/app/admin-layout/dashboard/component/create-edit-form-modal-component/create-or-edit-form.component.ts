@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { IPlan } from '../../models/market.models';
 
 
 @Component({
@@ -59,7 +60,7 @@ export class AdminCreateOrEditFormComponent implements OnInit {
     this.qrCodeDownloadLink = url;
   }
 
-  public submit(locationForm: any) {
+  public submit(locationForm: UntypedFormGroup) {
     if (locationForm.valid) {
       this.dialogRef.close({
         ...locationForm.value,
@@ -72,16 +73,16 @@ export class AdminCreateOrEditFormComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  public copyInputMessage(valueToCopy: any) {
+  public copyInputMessage(valueToCopy: string) {
     navigator.clipboard.writeText(valueToCopy);
   }
 
-  showTooltip(tooltip: any, copiedHint: string) {
+  showTooltip(tooltip: string, copiedHint: string) {
       console.log('tooltip', tooltip);
       console.log('copiedHint',copiedHint);
   }
 
-  private fillForm(data: any) {
+  private fillForm(data: IPlan) {
     this.locationForm.patchValue({
       title: data.title,
       details: data.details,

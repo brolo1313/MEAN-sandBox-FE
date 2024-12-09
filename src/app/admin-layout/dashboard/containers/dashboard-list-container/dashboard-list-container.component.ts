@@ -47,7 +47,7 @@ export class AdminDashboardContainerComponent {
     this.dashServices.editPlan({ id, body: { logoImage, title, details, coverImage, link } });
   }
 
-  public deletePlan(data: any) {
+  public deletePlan(data: { id: string | number }) {
     const { id } = data;
     const result = {
       id,

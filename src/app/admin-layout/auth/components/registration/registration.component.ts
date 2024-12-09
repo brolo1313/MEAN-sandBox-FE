@@ -17,7 +17,10 @@ import { MatError } from '@angular/material/form-field';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent {
-  public hide = true;
+  fb = inject(UntypedFormBuilder);
+  authService = inject(AuthService);
+
+  public hide: boolean = true;
 
   public registerForm: UntypedFormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
@@ -47,14 +50,7 @@ export class RegistrationComponent {
 
   public store = inject(StoreMarketsService);
 
-  constructor(
-    private fb: UntypedFormBuilder,
-    private authService: AuthService
-  ) { }
-
-
-
-  submit(registerForm: any) {
+  submit(registerForm: UntypedFormGroup) {
     const data = registerForm.value;
     this.authService.registration(data)
   }

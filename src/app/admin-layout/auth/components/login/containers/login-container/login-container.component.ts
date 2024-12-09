@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Injectable, inject } from '@angular/core';
 import { LoginComponent } from '../../component/login.component';
-import { AuthService } from '../../../../services/auth.service';
+import { AuthService, USER_CREDENTIALS } from '../../../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/admin-layout/auth/services/local-storage.services';
 import { ToastService } from 'src/app/shared/services/toasts.service';
@@ -49,7 +49,7 @@ export class AdminLoginContainerComponent {
     
     });
   }
-  public onLogin(loginData: any) {
+  public onLogin(loginData: USER_CREDENTIALS) {
     this.authService.login(loginData)
   }
 

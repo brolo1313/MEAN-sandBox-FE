@@ -17,15 +17,16 @@ import { StoreMarketsService } from 'src/app/admin-layout/dashboard/services/sto
   styleUrls: ['./resetPassword.component.scss'],
 })
 export class ResetPasswordComponent {
+  @Output() resetPassEmitter = new EventEmitter();
 
- @Output() resetPassEmitter = new EventEmitter();
-
- public store = inject(StoreMarketsService);
- resetPassService = inject(ConfirmResetPasswordService);
+  public store = inject(StoreMarketsService);
+  resetPassService = inject(ConfirmResetPasswordService);
 
   public fb = inject(UntypedFormBuilder);
   public router = inject(Router);
-  
+
+  public hide: boolean = true;
+
   public resetForm: UntypedFormGroup = this.fb.group({
     email: ['', [Validators.required]],
     // code: [''],
@@ -35,13 +36,10 @@ export class ResetPasswordComponent {
     return this.resetForm.get('email') as UntypedFormControl;
   }
 
-
-  public hide = true;
-
-  public navigateBack(){
+  public navigateBack() {
     this.router.navigate(['/login']);
   }
-  public submit(resetForm:any) {
+  public submit(resetForm: UntypedFormGroup) {
     const data = resetForm.value;
     this.resetPassEmitter.emit(data);
   }

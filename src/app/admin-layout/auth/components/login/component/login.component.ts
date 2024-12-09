@@ -43,7 +43,7 @@ export class LoginComponent {
     return this.loginForm.get('email') as UntypedFormControl;
   }
 
-  public submit(loginForm: any) {
+  public submit(loginForm: UntypedFormGroup) {
     const data = loginForm.value;
     this.loginEmitter.emit(data);
   }
