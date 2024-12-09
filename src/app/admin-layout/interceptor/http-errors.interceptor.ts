@@ -11,12 +11,12 @@ export const httpErrorsInterceptor: HttpInterceptorFn = (req, next) => {
   const toast = inject(ToastService);
   const authService = inject(AuthService);
   
-  const openSnackBar = (message: any, status = 'error') => toast.openSnackBar(message, status);
+  const openSnackBar = (message: string, status = 'error') => toast.openSnackBar(message, status);
 
   const localeStorage = localStorage?.getItem('auth');
   const accessToken = localeStorage ? JSON.parse(localeStorage)?.userSettings?.accessToken : null;
 
-  let modifiedRequest: HttpRequest<any>;
+  let modifiedRequest: HttpRequest<any>;  // eslint-disable-line @typescript-eslint/no-explicit-any
   
   //we need to remove header of authorization, due correctly work OAuth2
   if(accessToken){

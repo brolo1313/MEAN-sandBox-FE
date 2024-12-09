@@ -22,14 +22,14 @@
           mat-raised-button
           [matMenuTriggerFor]="menu"
         >
-          <strong>{{ userSettings?.email[0] }}</strong>
+          <strong>{{  userSettings.email?.[0] ?? '' }}</strong>
         </button>
         <mat-menu #menu="matMenu">
           <div class="credentials-info">
             <h6>
-              <strong>{{ userSettings?.username }}</strong>
+              <strong>{{ userSettings.username }}</strong>
             </h6>
-            <span>{{ userSettings?.email }}</span>
+            <span>{{ userSettings.email }}</span>
           </div>
           <mat-divider></mat-divider>
           <button class="my-2" (click)="navigateToPassPage()" mat-menu-item>

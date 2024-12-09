@@ -8,6 +8,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { LocalStorageService } from '../auth/services/local-storage.services';
 import { SocialAuthService } from '@abacritt/angularx-social-login';
+import { IAuthState } from '../dashboard/models/market.models';
 
 @Component({
   selector: 'app-admin-header',
@@ -25,7 +26,7 @@ export class AdminHeaderComponent  implements OnInit {
   localStorage = inject(LocalStorageService);
   authSocialService = inject(SocialAuthService);
 
-  userSettings: any;
+  userSettings!: IAuthState;
 
   ngOnInit(): void {
     this.userSettings = this.localStorage.getUserSettings();

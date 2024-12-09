@@ -37,25 +37,28 @@
       >
         <div class="avatar mt-3">
           <span class="fsz-20"
-            ><strong>{{ user?.name[0] }}</strong></span
+            ><strong>{{ user?.name?.[0] }}</strong></span
           >
         </div>
         <span class="text-secondary">{{ user?.role }}</span>
         <div class="d-flex flex-column align-items-center mt-3">
-          <span>{{ user?.username }}</span>
+          <span>{{ user?.name }}</span>
           <div class="d-flex">
-            <mat-icon style="color: lightcoral;">account_box</mat-icon>
+            <mat-icon style="color: lightcoral">account_box</mat-icon>
             <span class="text-secondary">{{
               user?.createdAt | date : "MMM d, y"
             }}</span>
           </div>
-     
         </div>
 
         <div class="bar-info mt-3">
-          <div class="post-count d-flex flex-column align-items-center justify-content-center">
+          <div
+            class="post-count d-flex flex-column align-items-center justify-content-center"
+          >
             <mat-icon>subtitles</mat-icon>
-            <span><strong>{{user.posts.length ?? '0'}}</strong></span>
+            <span
+              ><strong>{{ user?.posts?.length ?? "0" }}</strong></span
+            >
           </div>
         </div>
       </div></ng-container

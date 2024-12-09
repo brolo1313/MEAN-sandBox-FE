@@ -37,6 +37,7 @@ export class StoreMarketsService {
 
 
   addedMarketProfile(product: any) {
+    console.log('addedMarketProfile', product);
     this.selectAllMarketsList.update(items => [...items, product])
   }
 

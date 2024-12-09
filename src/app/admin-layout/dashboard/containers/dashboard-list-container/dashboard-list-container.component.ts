@@ -44,15 +44,16 @@ export class AdminDashboardContainerComponent {
 
   public editPlan(data: IPlan) {
     const { id, logoImage, title, details, coverImage, link } = data;
-    this.dashServices.editPlan({ id, body: { logoImage, title, details, coverImage, link } });
+    this.dashServices.editPlan({ body: { logoImage, title, details, coverImage, link }, id });
   }
 
   public deletePlan(data: { id: string | number }) {
     const { id } = data;
     const result = {
-      id,
+      id: id.toString(), // Convert id to string
       currentUser: this.currentUser.id
     }
     if (id) this.dashServices.deletePlan(result);
   }
+  
 }

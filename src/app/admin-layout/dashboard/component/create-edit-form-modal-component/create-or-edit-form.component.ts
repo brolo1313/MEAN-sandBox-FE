@@ -24,7 +24,7 @@ export class AdminCreateOrEditFormComponent implements OnInit {
   store = inject(StoreMarketsService);
 
   dataDialog = inject(MAT_DIALOG_DATA);
-  dialogRef = inject(MatDialogRef<any>);
+  dialogRef = inject(MatDialogRef);
 
 
 

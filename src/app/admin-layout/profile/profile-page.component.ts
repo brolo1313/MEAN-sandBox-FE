@@ -51,7 +51,7 @@ export class ProfilePageComponent implements OnInit,OnDestroy{
       .pipe(
         filter(event => event instanceof NavigationEnd)
       )
-      .subscribe((event: any) => {
+      .subscribe((event: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
         if (event instanceof NavigationEnd) {
           this.selectNavItemBasedOnUrl();
         }

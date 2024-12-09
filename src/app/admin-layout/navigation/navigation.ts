@@ -1,6 +1,7 @@
+import { NavigationItem } from "../dashboard/models/market.models";
 
 
-export const navigation: any[] = [
+export const navigation: NavigationItem[] = [
   {
     id: 'dashboard',
     link_name: 'Дошка',

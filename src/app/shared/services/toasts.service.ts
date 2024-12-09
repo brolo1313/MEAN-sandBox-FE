@@ -9,7 +9,7 @@ export class ToastService {
 
   snackBar = inject(MatSnackBar);
 
-  public openSnackBar(message: string, type?: string, verticalPosition?: any, horizontalPosition?: any) {
+  public openSnackBar(message: string, type?: string, verticalPosition?: any , horizontalPosition?:any) {  // eslint-disable-line @typescript-eslint/no-explicit-any
     const _snackType = type !== undefined ? type : '';
     this.snackBar.openFromComponent(SnackBarComponent, {
       duration: 7000,

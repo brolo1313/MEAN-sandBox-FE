@@ -6,6 +6,7 @@ import { StoreMarketsService } from './stored-markets-list.services';
 import { LocalStorageService } from '../../auth/services/local-storage.services';
 import { environment } from '../../../../environments/environment';
 import { ToastService } from 'src/app/shared/services/toasts.service';
+import { IPlan } from '../models/market.models';
 
 @Injectable({
   providedIn: 'root',
@@ -36,12 +37,12 @@ export class DashboardService {
     )
   }
 
-  public createPlan(body: any) {
+  public createPlan(body: IPlan) {
     this.store.setIsLoadingAfterCrudOperation(true);
     return this.http.post(`${environment.apiUrl}/plan`, {
       ...body
     }).subscribe(
-      (response:any) => {
+      (response:any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
         const {_id, ...otherData} = response;
         const result = {
           ...otherData,
@@ -58,7 +59,7 @@ export class DashboardService {
   }
 
 
-  public deletePlan(data: any) {
+  public deletePlan(data: {currentUser: string , id: string}) {
     this.store.setIsLoadingAfterCrudOperation(true);
     return this.http.delete(`${environment.apiUrl}/plans/${data.id}`, {
       params: {
@@ -76,7 +77,7 @@ export class DashboardService {
     );
   }
 
-  public editPlan(data: any) {
+  public editPlan(data: {body: IPlan, id: string}) {
     this.store.setIsLoadingAfterCrudOperation(true);
     return this.http.put(`${environment.apiUrl}/plan/${data.id}`, data.body, {
     }).subscribe(

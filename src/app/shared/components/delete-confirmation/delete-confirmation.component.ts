@@ -17,7 +17,7 @@ export class DeleteConfirmationComponent implements OnInit, OnDestroy {
 
   private unsubscribeAll$ = new Subject();
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<any>) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { planId: string | number | undefined, text: string, title: string }, public dialogRef: MatDialogRef<DeleteConfirmationComponent>) {
   }
 
   public ngOnInit(): void {

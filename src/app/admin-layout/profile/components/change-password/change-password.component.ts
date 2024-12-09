@@ -7,6 +7,7 @@ import {
   Validators,
   ReactiveFormsModule,
   FormsModule,
+  UntypedFormGroup,
 } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,6 +17,7 @@ import { Router } from '@angular/router';
 import { matchValidator } from 'src/app/admin-layout/auth/helpers/form-validators';
 import { LocalStorageService } from 'src/app/admin-layout/auth/services/local-storage.services';
 import { ProfileService } from '../../services/profile.service';
+import { IAuthState } from 'src/app/admin-layout/dashboard/models/market.models';
 
 
 @Component({
@@ -30,7 +32,7 @@ export class ChangePasswordComponent {
   localStorageService = inject(LocalStorageService);
   profileService = inject(ProfileService);
 
-  userSettings: any;
+  userSettings!: IAuthState;
 
   public form = this.fb.group({
     oldPassword: [null, Validators.required],
@@ -59,7 +61,7 @@ export class ChangePasswordComponent {
   }
 
 
-  public onSubmit(form:any): void {
+  public onSubmit(form:UntypedFormGroup): void {
     const result = {
       id: this.userSettings.id,
       body: {...form.value}
