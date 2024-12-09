@@ -1,12 +1,12 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { StoreMarketsService } from './stored-markets-list.services';
 import { LocalStorageService } from '../../auth/services/local-storage.services';
 import { environment } from '../../../../environments/environment';
 import { ToastService } from 'src/app/shared/services/toasts.service';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { IPlan } from '../models/market.models';
 
 @Injectable({
   providedIn: 'root',
@@ -26,23 +26,23 @@ export class DashboardService {
 
   public getPlans() {
     this.store.setDataIsLoadingMarketsProfilesList(true);
-    return this.http.get(`${environment.apiUrl}/plans`).subscribe(
-      (response) => {
+    return this.http.get<IPlan[]>(`${environment.apiUrl}/plans`).subscribe(
+      (response: IPlan[]) => {
         this.store.storedAllMarketsList(response)
         this.store.setDataIsLoadingMarketsProfilesList(false);
       },
-      (error) => {
+      () => {
         this.store.setDataIsLoadingMarketsProfilesList(false);
       }
     )
   }
 
-  public createPlan(body: any) {
+  public createPlan(body: IPlan) {
     this.store.setIsLoadingAfterCrudOperation(true);
     return this.http.post(`${environment.apiUrl}/plan`, {
       ...body
     }).subscribe(
-      (response:any) => {
+      (response:any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
         const {_id, ...otherData} = response;
         const result = {
           ...otherData,
@@ -52,41 +52,41 @@ export class DashboardService {
         this.store.setIsLoadingAfterCrudOperation(false);
         this.toastService.openSnackBar('Створення успішне', 'successful', 'top');
       },
-      (error) => {
+      () => {
         this.store.setIsLoadingAfterCrudOperation(false);
       }
     )
   }
 
 
-  public deletePlan(data: any) {
+  public deletePlan(data: {currentUser: string , id: string}) {
     this.store.setIsLoadingAfterCrudOperation(true);
     return this.http.delete(`${environment.apiUrl}/plans/${data.id}`, {
       params: {
         authorId: data.currentUser
       }
     }).subscribe(
-      (response) => {
+      () => {
         this.store.deleteMarketProfile(data.id);
         this.store.setIsLoadingAfterCrudOperation(false);
         this.toastService.openSnackBar('Видалення успішне', 'successful-delete', 'top');
       },
-      (error) => {
+      () => {
         this.store.setIsLoadingAfterCrudOperation(false);
       }
     );
   }
 
-  public editPlan(data: any) {
+  public editPlan(data: {body: IPlan, id: string}) {
     this.store.setIsLoadingAfterCrudOperation(true);
-    return this.http.put(`${environment.apiUrl}/plan/${data.id}`, data.body, {
+    return this.http.put<IPlan>(`${environment.apiUrl}/plan/${data.id}`, data.body, {
     }).subscribe(
-      (updatedPlan) => {
+      (updatedPlan: IPlan) => {
         this.store.updateMarketProfile(updatedPlan);
         this.store.setIsLoadingAfterCrudOperation(false);
         this.toastService.openSnackBar('Редагування успішне', 'successful-edit', 'top');
       },
-      (error) => {
+      () => {
         this.store.setIsLoadingAfterCrudOperation(false);
       }
     );

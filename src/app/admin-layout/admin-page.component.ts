@@ -1,4 +1,4 @@
-import { Component, ViewChild, } from '@angular/core';
+import { Component, OnInit, ViewChild, } from '@angular/core';
 import { NgIf, CommonModule, NgFor } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { AdminHeaderComponent } from './header/admin-header.component';
@@ -23,7 +23,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.scss']
 })
-export class AdminPageComponent {
+export class AdminPageComponent implements OnInit {
 
   navItems = navigation;
 
@@ -39,7 +39,7 @@ export class AdminPageComponent {
   constructor(private observer: BreakpointObserver, private router: Router, private route: ActivatedRoute) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
+    ).subscribe(() => {
       const title = this.getTitleFromRoute(this.route.root);
       this.titleHeader = title;
     });

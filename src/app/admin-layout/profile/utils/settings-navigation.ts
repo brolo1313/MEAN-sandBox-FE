@@ -1,6 +1,7 @@
+import { NavigationItem } from "../../dashboard/models/market.models";
 
 
-export const settings_navigation: any[] = [
+export const settings_navigation: NavigationItem[] = [
     {
       id: 'main',
       link_name: 'Загальні',
@@ -14,5 +15,5 @@ export const settings_navigation: any[] = [
     },
   
   
-  ].sort((a, b) => a.link_name.localeCompare(b.link_name)) as [];
+  ].sort((a, b) => a.link_name.localeCompare(b.link_name));
   

@@ -1,17 +1,15 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
+import { IPlan } from '../models/market.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreMarketsService {
 
-  public selectAllMarketsList = signal<any>([]);
+  public selectAllMarketsList = signal<IPlan[]>([]);
 
   private dataIsLoadingMarketsProfilesList = signal<boolean>(false);
   private isLoadingAfterCrudOperation = signal<boolean>(false);
-
-  constructor() {
-  }
 
   setDataIsLoadingMarketsProfilesList(data: boolean) {
     this.dataIsLoadingMarketsProfilesList.set(data);
@@ -30,7 +28,7 @@ export class StoreMarketsService {
   }
 
 
-  storedAllMarketsList(data: any) {
+  storedAllMarketsList(data: IPlan[]) {
     this.selectAllMarketsList.set(data);
   }
 
@@ -39,17 +37,17 @@ export class StoreMarketsService {
   }
 
 
-  addedMarketProfile(product: any) {
+  addedMarketProfile(product: IPlan) {
     this.selectAllMarketsList.update(items => [...items, product])
   }
 
-  deleteMarketProfile(profileId: any) {
-    this.selectAllMarketsList.update(items => items.filter((vendor: any) => vendor.id !== profileId));
+  deleteMarketProfile(profileId: string) {
+    this.selectAllMarketsList.update(items => items.filter((vendor: IPlan) => vendor.id !== profileId));
   }
 
-  updateMarketProfile(updatedMarket: any) {
+  updateMarketProfile(updatedMarket: IPlan) {
     this.selectAllMarketsList.update(items =>
-      items.map((item: any) => item.id === updatedMarket.id ? updatedMarket : item)
+      items.map((item: IPlan) => item.id === updatedMarket.id ? updatedMarket : item)
     )
   }
 }

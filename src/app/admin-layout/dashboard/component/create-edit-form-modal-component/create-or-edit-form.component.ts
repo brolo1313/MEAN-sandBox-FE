@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { QRCodeModule } from 'angularx-qrcode';
 import { SafeUrl } from '@angular/platform-browser';
 import { StoreMarketsService } from '../../services/stored-markets-list.services';
@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { IPlan } from '../../models/market.models';
 
 
 @Component({
@@ -17,13 +18,13 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './create-or-edit-form.component.html',
   styleUrls: ['./create-or-edit-form.component.scss']
 })
-export class AdminCreateOrEditFormComponent {
+export class AdminCreateOrEditFormComponent implements OnInit {
 
   fb = inject(UntypedFormBuilder);
   store = inject(StoreMarketsService);
 
   dataDialog = inject(MAT_DIALOG_DATA);
-  dialogRef = inject(MatDialogRef<any>);
+  dialogRef = inject(MatDialogRef);
 
 
 
@@ -31,10 +32,6 @@ export class AdminCreateOrEditFormComponent {
 
   public copiedHint = 'Скопійовано';
   public qrCodeDownloadLink: SafeUrl = "";
-
-
-
-  @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   public locationForm: UntypedFormGroup = this.fb.group({
     title: [{ value: '', disabled: false }, [Validators.required]],
@@ -63,7 +60,7 @@ export class AdminCreateOrEditFormComponent {
     this.qrCodeDownloadLink = url;
   }
 
-  public submit(locationForm: any) {
+  public submit(locationForm: UntypedFormGroup) {
     if (locationForm.valid) {
       this.dialogRef.close({
         ...locationForm.value,
@@ -76,15 +73,16 @@ export class AdminCreateOrEditFormComponent {
     this.dialogRef.close();
   }
 
-  public copyInputMessage(valueToCopy: any) {
+  public copyInputMessage(valueToCopy: string) {
     navigator.clipboard.writeText(valueToCopy);
   }
 
-  showTooltip(tooltip: any, copiedHint: string) {
-    // tooltip.open({ copiedHint });
+  showTooltip(tooltip: string, copiedHint: string) {
+      console.log('tooltip', tooltip);
+      console.log('copiedHint',copiedHint);
   }
 
-  private fillForm(data: any) {
+  private fillForm(data: IPlan) {
     this.locationForm.patchValue({
       title: data.title,
       details: data.details,

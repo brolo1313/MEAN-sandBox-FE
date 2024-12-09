@@ -12,8 +12,8 @@
         >
       </div>
       <ul class="nav-links" [class.px-0]="!openSidebar"  [class.px-2]="openSidebar" id="nav-links">
-        <li *ngFor="let item of navItems" [ngClass]="{'showMenu': (itemEl.classList.contains('active')) && item.sub_menu.length > 0}" #itemEl routerLinkActive="active">
-          <div *ngIf="item.sub_menu.length == 0" class="dropdown-title d-flex align-items-center justify-content-between">
+        <li *ngFor="let item of navItems" [ngClass]="{'showMenu': (itemEl.classList.contains('active')) && item.sub_menu && item.sub_menu.length > 0}" #itemEl routerLinkActive="active">
+          <div *ngIf="item.sub_menu?.length === 0" class="dropdown-title d-flex align-items-center justify-content-between">
             <a style="height: 60px;" class="d-flex justify-content-center align-items-center full-width" [routerLink]="[item.path]">
               <mat-icon [ngClass]="openSidebar ? 'me-4' : 'me-0' " style="color: orange" class="link_icon">{{
                 item.icon
@@ -24,9 +24,11 @@
             </a>
           </div>
           <div
-            *ngIf="item.sub_menu.length > 0"
+            *ngIf="item.sub_menu && item.sub_menu.length > 0"
             class="dropdown-title d-flex align-items-center justify-content-between  cursor-pointer"
             (click)="showSubmenu(itemEl)"
+            (keydown)="showSubmenu(itemEl)"
+            tabindex="0"
           >
             <a style="height: 60px;" class="d-flex justify-content-center align-items-center full-width">
               <mat-icon [ngClass]="openSidebar ? 'me-4' : 'me-0' " style="color: orange" class="link_icon">{{
@@ -44,7 +46,7 @@
             >
           </div>
 
-          <ul class="sub-menu" [class.blank]="item.sub_menu.length == 0">
+          <ul class="sub-menu" [class.blank]="item.sub_menu && item.sub_menu.length === 0">
             <li class="d-flex align-items-center" [class.d-none]="isMobile || openSidebar">
               <a class="link_name">{{ item.link_name }}</a>
             </li>

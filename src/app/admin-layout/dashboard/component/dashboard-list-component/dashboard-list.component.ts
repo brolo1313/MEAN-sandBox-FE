@@ -13,6 +13,7 @@ import { TableViewSkeletonComponent } from 'src/app/shared/components/skeletons/
 import { LoaderComponent } from 'src/app/shared/components/loader/loader.component';
 import { LocalStorageService } from 'src/app/admin-layout/auth/services/local-storage.services';
 import { MatIconModule } from '@angular/material/icon';
+import { IPlan } from '../../models/market.models';
 
 @Component({
   selector: 'app-admin-dashboard-list',
@@ -34,7 +35,9 @@ export class DashboardListComponent implements OnInit {
   @Output() getAllPlans = new EventEmitter();
 
 
-  public byId = (item: any) => item?.id;
+  trackById(index: number, plan: IPlan): number | undefined | string {
+    return plan.id;
+  }
   public searchText!: string;
 
   ngOnInit() {
@@ -51,7 +54,7 @@ export class DashboardListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().pipe(
-      filter((data: any) => !!data),
+      filter((data: IPlan) => !!data),
     ).subscribe(result => {
       this.createPlan.emit(result)
     });
@@ -68,14 +71,14 @@ export class DashboardListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().pipe(
-      filter((data: any) => !!data),
+      filter((data: { result: boolean, id: string }) => !!data),
     ).subscribe(result => {
       this.deletePlan.emit(result)
     });
   }
 
 
-  public updatePlan(plan: any) {
+  public updatePlan(plan: IPlan) {
     const dialogRef = this.dialog.open(AdminCreateOrEditFormComponent, {
       maxWidth: '400px',
       width: '100%',
@@ -86,14 +89,14 @@ export class DashboardListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().pipe(
-      filter((data: any) => !!data),
+      filter((data: IPlan) => !!data),
     ).subscribe(result => {
       this.editPlan.emit(result)
     });
   }
 
-  public preView(plan: any) {
-    const dialogRef = this.dialog.open(AdminCreateOrEditFormComponent, {
+  public preView(plan: IPlan) {
+    this.dialog.open(AdminCreateOrEditFormComponent, {
       maxWidth: '400px',
       width: '100%',
       data: {

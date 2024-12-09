@@ -4,7 +4,6 @@ import { HttpErrors } from './http-error.config';
 import { inject } from '@angular/core';
 
 import { ToastService } from 'src/app/shared/services/toasts.service';
-import { Router } from '@angular/router';
 import { AuthService } from '../auth/services/auth.service';
 
 export const httpErrorsInterceptor: HttpInterceptorFn = (req, next) => {
@@ -12,12 +11,12 @@ export const httpErrorsInterceptor: HttpInterceptorFn = (req, next) => {
   const toast = inject(ToastService);
   const authService = inject(AuthService);
   
-  const openSnackBar = (message: any, status = '') => toast.openSnackBar(message, 'error');
+  const openSnackBar = (message: string, status = 'error') => toast.openSnackBar(message, status);
 
   const localeStorage = localStorage?.getItem('auth');
   const accessToken = localeStorage ? JSON.parse(localeStorage)?.userSettings?.accessToken : null;
 
-  let modifiedRequest: HttpRequest<any>;
+  let modifiedRequest: HttpRequest<any>;  // eslint-disable-line @typescript-eslint/no-explicit-any
   
   //we need to remove header of authorization, due correctly work OAuth2
   if(accessToken){
@@ -38,9 +37,9 @@ export const httpErrorsInterceptor: HttpInterceptorFn = (req, next) => {
 
       const errorKey = Object.keys(error.error)[0];
 
-      if (HttpErrors.hasOwnProperty(errorKey)) {
+      if (Object.prototype.hasOwnProperty.call(HttpErrors, errorKey)) {
         let found = false;
-        HttpErrors[errorKey].map((obj: any, index: any) => {
+        HttpErrors[errorKey].map((obj: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
           const message = errorName === 'app_err_default' && errorMessage ? errorMessage : obj.notification;
 
           openSnackBar(message, obj.code);

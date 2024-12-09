@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Injectable, inject } from '@angular/core';
 import { LoginComponent } from '../../component/login.component';
-import { AuthService } from '../../../../services/auth.service';
+import { AuthService, USER_CREDENTIALS } from '../../../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/admin-layout/auth/services/local-storage.services';
 import { ToastService } from 'src/app/shared/services/toasts.service';
@@ -20,7 +20,7 @@ import { ToastService } from 'src/app/shared/services/toasts.service';
   templateUrl: './login-container.component.html',
   styleUrls: ['./login-container.component.scss'],
 })
-export class AdminLoginContainer {
+export class AdminLoginContainerComponent {
   private route = inject(ActivatedRoute);
   private localStorageService = inject(LocalStorageService);
   private router = inject(Router);
@@ -49,7 +49,7 @@ export class AdminLoginContainer {
     
     });
   }
-  public onLogin(loginData: any) {
+  public onLogin(loginData: USER_CREDENTIALS) {
     this.authService.login(loginData)
   }
 

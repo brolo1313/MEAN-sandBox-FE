@@ -1,4 +1,4 @@
-import { Injectable, TemplateRef, inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../components/snack-bar-component/snack-bar.component';
 
@@ -9,7 +9,7 @@ export class ToastService {
 
   snackBar = inject(MatSnackBar);
 
-  public openSnackBar(message: string, type?: string, verticalPosition?: any, horizontalPosition?: any) {
+  public openSnackBar(message: string, type?: string, verticalPosition?: any , horizontalPosition?:any) {  // eslint-disable-line @typescript-eslint/no-explicit-any
     const _snackType = type !== undefined ? type : '';
     this.snackBar.openFromComponent(SnackBarComponent, {
       duration: 7000,

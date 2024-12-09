@@ -1,16 +1,34 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
+
+export interface UserProfile {
+  _id: string;
+  bio: string;
+  createdAt: string;
+  links: {
+    website: string;
+    facebook: string;
+    twitter: string;
+    github: string;
+  };
+  name: string;
+  posts: string[];
+  profilePics: string;
+  role: string;
+  title: string;
+  updatedAt: string;
+  user: string;
+  __v: number;
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreUsersService {
 
-  public selectAllUsers = signal<any>([]);
+  public selectAllUsers = signal<UserProfile[]>([]);
 
   private dataIsLoadingAllUsers = signal<boolean>(false);
-
-  constructor() {
-  }
 
   setIsLoadingAllUsers(data: boolean) {
     this.dataIsLoadingAllUsers.set(data);
@@ -21,7 +39,7 @@ export class StoreUsersService {
   }
 
 
-  storedAllUsers(data: any) {
+  storedAllUsers(data: UserProfile[]) {
     this.selectAllUsers.set(data);
   }
 

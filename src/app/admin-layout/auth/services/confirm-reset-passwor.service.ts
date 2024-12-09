@@ -6,7 +6,7 @@ import { Injectable, signal } from '@angular/core';
 export class ConfirmResetPasswordService {
 
     private isConfirmed = signal<boolean>(false);
-    private confirmationData = signal<any>([]);
+    private confirmationData = signal<[]>([]);
 
     setIsConfirmed(data: boolean) {
         this.isConfirmed.set(data);
@@ -16,7 +16,7 @@ export class ConfirmResetPasswordService {
         return this.isConfirmed();
     }
 
-    setConfirmationData(data: any) {
+    setConfirmationData(data: []) {
         this.confirmationData.set(data);
     }
 

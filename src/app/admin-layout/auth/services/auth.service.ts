@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { LocalStorageService } from "./local-storage.services";
@@ -7,6 +7,7 @@ import { environment } from "src/environments/environment";
 import { ToastService } from "src/app/shared/services/toasts.service";
 import { StoreMarketsService } from "../../dashboard/services/stored-markets-list.services";
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from "@abacritt/angularx-social-login";
+import { AuthData, AuthDataGoogle } from "../../dashboard/models/market.models";
 
 export interface USER_CREDENTIALS {
   username: string,
@@ -33,13 +34,14 @@ export class AuthService {
 
   login(loginData: USER_CREDENTIALS) {
     this.store.setDataIsLoadingMarketsProfilesList(true);
-    return this.http.post(`${environment.apiUrl}/sign-in`, loginData).subscribe(
-      (response) => {
+    return this.http.post<AuthData>(`${environment.apiUrl}/sign-in`, loginData).subscribe(
+      (response: AuthData) => {
         this.localStorageService.setUserSettings(response);
         this.router.navigate(['/admin/dashboard']);
+        this.toastService.openSnackBar(`Hello, ${response.username}`, 'successful', 'top');
         this.store.setDataIsLoadingMarketsProfilesList(false);
       },
-      (error) => {
+      () => {
         this.store.setDataIsLoadingMarketsProfilesList(false);
       }
     );
@@ -53,35 +55,34 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  public registration(user: any) {
+  public registration(user: { username: string, email: string, password: string, passwordConfirmation: string }) {
     this.store.setDataIsLoadingMarketsProfilesList(true);
-    return this.http.post(`${environment.apiUrl}/sign-up`, user).subscribe(
-      (response) => {
+    return this.http.post<AuthData>(`${environment.apiUrl}/sign-up`, user).subscribe(
+      (response: AuthData) => {
         this.localStorageService.setUserSettings(response);
         this.store.setDataIsLoadingMarketsProfilesList(false);
         this.toastService.openSnackBar('Реєстрація успішна, можете увійти', 'successful', 'top');
         this.router.navigate(['/login']);
       },
-      (error) => {
+      () => {
         this.store.setDataIsLoadingMarketsProfilesList(false);
       }
     );;
   }
 
-  public forgotPwRequest(data: any) {
+  public forgotPwRequest(data: { email: string }) {
     this.store.setDataIsLoadingMarketsProfilesList(true);
-    return this.http.post(`${environment.apiUrl}/reset-password`, data).subscribe(
-      (response: any) => {
+    return this.http.post<{ message: string }>(`${environment.apiUrl}/reset-password`, data).subscribe(
+      (response: { message: string }) => {
         this.store.setDataIsLoadingMarketsProfilesList(false);
         this.toastService.openSnackBar(response.message, 'successful', 'top');
         this.router.navigate(['/login']);
       },
-      (error) => {
+      () => {
         this.store.setDataIsLoadingMarketsProfilesList(false);
       }
     );
   }
-
 
   public googleLogin() {
     this.authSocialService.signIn(GoogleLoginProvider.PROVIDER_ID);
@@ -93,13 +94,13 @@ export class AuthService {
       this.loggedIn = (user != null);
       if (user) {
         this.store.setDataIsLoadingMarketsProfilesList(true);
-        return this.http.post(`${environment.apiUrl}/auth/google/callback`, user).subscribe(
-          (response) => {
+        return this.http.post<AuthDataGoogle>(`${environment.apiUrl}/auth/google/callback`, user).subscribe(
+          (response: AuthDataGoogle) => {
             this.localStorageService.setUserSettings(response);
             this.router.navigate(['/admin/dashboard']);
             this.store.setDataIsLoadingMarketsProfilesList(false);
           },
-          (error) => {
+          () => {
             this.store.setDataIsLoadingMarketsProfilesList(false);
           }
         )

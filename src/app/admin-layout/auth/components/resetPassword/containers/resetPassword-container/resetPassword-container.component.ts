@@ -18,12 +18,12 @@ import { AuthService } from '../../../../services/auth.service';
   templateUrl: './resetPassword-container.component.html',
   styleUrls: ['./resetPassword-container.component.scss'],
 })
-export class AdminResetPasswordContainer {
+export class AdminResetPasswordContainerComponent {
 
   resetPassService = inject(ConfirmResetPasswordService);
   authService = inject(AuthService);
 
-  public onResetPassword(data: any) {
+  public onResetPassword(data: { email: string }) {
     this.authService.forgotPwRequest(data);
   }
 }

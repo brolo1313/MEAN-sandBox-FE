@@ -11,8 +11,9 @@
         class="full-width mt-4"
       >
         <div class="input-wrapper">
-          <label class="text-white mb-2">Імя</label>
+          <label for="name" class="text-white mb-2">Імя</label>
           <input
+            id="name"
             type="text"
             matInput
             placeholder="Імя"
@@ -25,8 +26,9 @@
         </div>
 
         <div class="input-wrapper">
-          <label class="text-white mb-2">Пошта</label>
+          <label for="email" class="text-white mb-2">Пошта</label>
           <input
+            id="email"
             type="email"
             matInput
             placeholder="your_email@example.com"
@@ -39,8 +41,9 @@
         </div>
 
         <div class="input-wrapper">
-          <label class="text-white mb-2">Пароль</label>
+          <label for="password" class="text-white mb-2">Пароль</label>
           <input
+            id="password"
             type="password"
             matInput
             placeholder="Пароль"
@@ -49,6 +52,8 @@
           />
           <i
             (click)="hide = !hide"
+            (keydown)="hide = !hide"
+            tabindex="0"
             class="{{ hide ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash' }}"
           ></i>
 
@@ -58,8 +63,9 @@
         </div>
 
         <div class="input-wrapper">
-          <label class="text-white mb-2">Повторити пароль</label>
+          <label for="repeat-password" class="text-white mb-2">Повторити пароль</label>
           <input
+            id="repeat-password"
             type="password"
             matInput
             placeholder="Пароль"
@@ -68,6 +74,8 @@
           />
           <i
             (click)="hide = !hide"
+            (keydown)="hide = !hide"
+            tabindex="0"
             class="{{ hide ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash' }}"
           ></i>
 

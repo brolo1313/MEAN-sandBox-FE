@@ -1,6 +1,5 @@
-import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { LocalStorageService } from './local-storage.services';
 
 
@@ -16,8 +15,6 @@ export class AuthGuard {
   }
 
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
   ) {
     const isLogged = this.localStorageService.getUserSettings();
     const userToken = isLogged?.accessToken
