@@ -1,7 +1,5 @@
-import { Component, Inject, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,7 +19,6 @@ import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 export class SnackBarComponent {
 
   data = inject(MAT_SNACK_BAR_DATA)
-
 
   get getIcon() {
     switch (this.data.snackType) {

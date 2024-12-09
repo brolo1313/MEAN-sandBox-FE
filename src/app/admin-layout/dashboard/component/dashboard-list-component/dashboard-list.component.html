@@ -2,6 +2,8 @@
   <div
     class="create_location pos-absolute bg-general border-radius-half z-index-1 p-3 cursor-pointer"
     (click)="addedPlan()"
+    (keydown)="addedPlan()"
+    tabindex="0"
     [ngClass]="{ 'not-allowed': store.getDataIsLoadingMarketsProfilesList() }"
   >
     <button
@@ -71,6 +73,8 @@
               "
               class="d-flex align-self-center border-0 bg-transparent cursor-pointer"
               (click)="updatePlan(plan)"
+              (keydown)="updatePlan(plan)"
+              tabindex="0"
             >
               <mat-icon class="text-dark">edit</mat-icon>
             </div>
@@ -148,6 +152,8 @@
                   "
                   class="border-0 bg-transparent cursor-pointer"
                   (click)="updatePlan(plan)"
+                  (keydown)="updatePlan(plan)"
+                  tabindex="0"
                 >
                   <mat-icon>edit</mat-icon>
                 </div>

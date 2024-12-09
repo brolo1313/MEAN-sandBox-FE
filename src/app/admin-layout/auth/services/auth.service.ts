@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { LocalStorageService } from "./local-storage.services";
@@ -39,7 +39,7 @@ export class AuthService {
         this.router.navigate(['/admin/dashboard']);
         this.store.setDataIsLoadingMarketsProfilesList(false);
       },
-      (error) => {
+      () => {
         this.store.setDataIsLoadingMarketsProfilesList(false);
       }
     );
@@ -62,7 +62,7 @@ export class AuthService {
         this.toastService.openSnackBar('Реєстрація успішна, можете увійти', 'successful', 'top');
         this.router.navigate(['/login']);
       },
-      (error) => {
+      () => {
         this.store.setDataIsLoadingMarketsProfilesList(false);
       }
     );;
@@ -76,7 +76,7 @@ export class AuthService {
         this.toastService.openSnackBar(response.message, 'successful', 'top');
         this.router.navigate(['/login']);
       },
-      (error) => {
+      () => {
         this.store.setDataIsLoadingMarketsProfilesList(false);
       }
     );
@@ -99,7 +99,7 @@ export class AuthService {
             this.router.navigate(['/admin/dashboard']);
             this.store.setDataIsLoadingMarketsProfilesList(false);
           },
-          (error) => {
+          () => {
             this.store.setDataIsLoadingMarketsProfilesList(false);
           }
         )

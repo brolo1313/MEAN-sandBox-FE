@@ -26,23 +26,25 @@
   </div>
   <form [formGroup]="locationForm" class="mx-2 full-width">
     <div class="d-flex flex-column mt-2">
-      <label>Назва</label>
-      <input type="text" formControlName="title" />
+      <label for="title">Назва</label>
+      <input id="title" type="text" formControlName="title" />
     </div>
 
     <div class="d-flex flex-column mt-2">
-      <label>Опис</label>
-      <input type="text" formControlName="details" />
+      <label for="details">Опис</label>
+      <input id="details" type="text" formControlName="details" />
     </div>
 
     <div class="d-flex flex-column mt-2 pos-relative">
-      <label>Посилання</label>
-      <input type="text" matInput [formControl]="planLinkFC" #pathInput />
+      <label for="link">Посилання</label>
+      <input id="link" type="text" matInput [formControl]="planLinkFC" #pathInput />
       <img
         *ngIf="planLinkFC.value"
         (click)="
           copyInputMessage(planLinkFC.value); showTooltip('1', copiedHint)
         "
+        (keydown)="copyInputMessage(planLinkFC.value); showTooltip('1', copiedHint)"
+        tabindex="0"
         class="copy-clipboard pos-absolute"
         src="assets/icons/admin-layout-icons/copy-clipboard.svg"
         alt=""

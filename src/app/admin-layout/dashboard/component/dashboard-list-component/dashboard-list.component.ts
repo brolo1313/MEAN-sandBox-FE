@@ -93,7 +93,7 @@ export class DashboardListComponent implements OnInit {
   }
 
   public preView(plan: any) {
-    const dialogRef = this.dialog.open(AdminCreateOrEditFormComponent, {
+    this.dialog.open(AdminCreateOrEditFormComponent, {
       maxWidth: '400px',
       width: '100%',
       data: {

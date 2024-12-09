@@ -1,9 +1,19 @@
 <div class="main-container">
   <div class="d-flex flex-column flex-md-row">
     <div class="left-sight navigation-settings">
-      <div class="d-flex flex-row flex-md-column column-gap-3 row-gap-3 flex-wrap">
+      <div
+        class="d-flex flex-row flex-md-column column-gap-3 row-gap-3 flex-wrap"
+      >
         <ng-container *ngFor="let nav of navSettingsItems; let i = index">
-          <span class="nav-item cursor-pointer" [class.selected]="selectedItem === i" (click)="selectedItem = i" [routerLink]="[nav.path]">{{ nav.link_name }}</span>
+          <span
+            class="nav-item cursor-pointer"
+            [class.selected]="selectedItem === i"
+            (click)="selectedItem = i"
+            (keydown)="selectedItem = i"
+            tabindex="0"
+            [routerLink]="[nav.path]"
+            >{{ nav.link_name }}</span
+          >
         </ng-container>
       </div>
     </div>

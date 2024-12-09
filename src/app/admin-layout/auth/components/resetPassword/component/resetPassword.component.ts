@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
-import { FormGroup, ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 import { Router } from '@angular/router';
 import { ConfirmResetPasswordService } from '../../../services/confirm-reset-passwor.service';

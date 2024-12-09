@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
@@ -16,7 +16,7 @@ import { SocialAuthService } from '@abacritt/angularx-social-login';
   templateUrl: './admin-header.component.html',
   styleUrls: ['./admin-header.component.scss']
 })
-export class AdminHeaderComponent {
+export class AdminHeaderComponent  implements OnInit {
 
   @Input() title: string = '';
 
@@ -28,7 +28,6 @@ export class AdminHeaderComponent {
   userSettings: any;
 
   ngOnInit(): void {
-
     this.userSettings = this.localStorage.getUserSettings();
   }
 

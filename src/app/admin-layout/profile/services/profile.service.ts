@@ -24,15 +24,15 @@ export class ProfileService {
 
   public changeProfilePassword(data: any) {
     return this.http.put(`${environment.apiUrl}/change-password?id=${data.id}`, data.body).subscribe(
-      (response) => {
+      () => {
         this.toastService.openSnackBar('Пароль було змінено', 'successful', 'top');
         this.router.navigate(['/admin/profile-settings']);
       },
       (error) => {
-        
+        console.log('changeProfilePassword', error);
       }
     );
   }
- 
+
 }
 

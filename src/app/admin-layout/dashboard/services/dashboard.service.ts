@@ -1,12 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { StoreMarketsService } from './stored-markets-list.services';
 import { LocalStorageService } from '../../auth/services/local-storage.services';
 import { environment } from '../../../../environments/environment';
 import { ToastService } from 'src/app/shared/services/toasts.service';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +30,7 @@ export class DashboardService {
         this.store.storedAllMarketsList(response)
         this.store.setDataIsLoadingMarketsProfilesList(false);
       },
-      (error) => {
+      () => {
         this.store.setDataIsLoadingMarketsProfilesList(false);
       }
     )
@@ -52,7 +51,7 @@ export class DashboardService {
         this.store.setIsLoadingAfterCrudOperation(false);
         this.toastService.openSnackBar('Створення успішне', 'successful', 'top');
       },
-      (error) => {
+      () => {
         this.store.setIsLoadingAfterCrudOperation(false);
       }
     )
@@ -66,12 +65,12 @@ export class DashboardService {
         authorId: data.currentUser
       }
     }).subscribe(
-      (response) => {
+      () => {
         this.store.deleteMarketProfile(data.id);
         this.store.setIsLoadingAfterCrudOperation(false);
         this.toastService.openSnackBar('Видалення успішне', 'successful-delete', 'top');
       },
-      (error) => {
+      () => {
         this.store.setIsLoadingAfterCrudOperation(false);
       }
     );
@@ -86,7 +85,7 @@ export class DashboardService {
         this.store.setIsLoadingAfterCrudOperation(false);
         this.toastService.openSnackBar('Редагування успішне', 'successful-edit', 'top');
       },
-      (error) => {
+      () => {
         this.store.setIsLoadingAfterCrudOperation(false);
       }
     );

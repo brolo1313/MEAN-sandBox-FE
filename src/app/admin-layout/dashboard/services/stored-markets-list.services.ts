@@ -1,4 +1,4 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +9,6 @@ export class StoreMarketsService {
 
   private dataIsLoadingMarketsProfilesList = signal<boolean>(false);
   private isLoadingAfterCrudOperation = signal<boolean>(false);
-
-  constructor() {
-  }
 
   setDataIsLoadingMarketsProfilesList(data: boolean) {
     this.dataIsLoadingMarketsProfilesList.set(data);

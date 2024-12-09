@@ -1,6 +1,6 @@
 import { UsersService } from '../../services/users.service';
 import { CommonModule, NgFor } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { StoreUsersService } from '../../services/store-users.services';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './users.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactsComponent {
+export class ContactsComponent implements OnInit {
   usersService = inject(UsersService);
   storeUsers = inject(StoreUsersService);
 

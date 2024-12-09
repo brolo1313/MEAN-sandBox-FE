@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { QRCodeModule } from 'angularx-qrcode';
 import { SafeUrl } from '@angular/platform-browser';
 import { StoreMarketsService } from '../../services/stored-markets-list.services';
@@ -17,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './create-or-edit-form.component.html',
   styleUrls: ['./create-or-edit-form.component.scss']
 })
-export class AdminCreateOrEditFormComponent {
+export class AdminCreateOrEditFormComponent implements OnInit {
 
   fb = inject(UntypedFormBuilder);
   store = inject(StoreMarketsService);

@@ -46,8 +46,9 @@
 
       <form [formGroup]="loginForm" (ngSubmit)="submit(loginForm)" class="mt-4">
         <div class="input-wrapper">
-          <label class="text-white mb-2">Пошта</label>
+          <label for="email" class="text-white mb-2">Пошта</label>
           <input
+            id="email"
             type="email"
             matInput
             placeholder="your_email@example.com"
@@ -60,8 +61,9 @@
         </div>
 
         <div class="d-flex flex-column mt-3 pos-relative">
-          <label class="text-white mb-2">Пароль</label>
+          <label for="password" class="text-white mb-2">Пароль</label>
           <input
+            id="password"
             type="password"
             matInput
             placeholder="Пароль"
@@ -70,6 +72,8 @@
           />
           <i
             (click)="hide = !hide"
+            (keydown)="hide = !hide"
+            tabindex="0"
             class="{{ hide ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash' }}"
           ></i>
         </div>
@@ -95,6 +99,8 @@
           <a
             class="fsz-sm fw-7 text-brand text-general text-decoration-none"
             (click)="navigateToResetPage()"
+            (keydown)="navigateToResetPage()"
+            tabindex="0"
           >
             <strong>Забули пароль?</strong>
           </a>

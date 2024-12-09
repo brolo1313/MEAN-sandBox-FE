@@ -5,7 +5,6 @@ import { DashboardService } from '../../services/dashboard.service';
 import { IPlan } from '../../models/market.models';
 import { AdminHeaderComponent } from '../../../header/admin-header.component';
 import { StoreMarketsService } from '../../services/stored-markets-list.services';
-import { UsersService } from 'src/app/admin-layout/users/services/users.service';
 import { LocalStorageService } from 'src/app/admin-layout/auth/services/local-storage.services';
 
 
@@ -30,9 +29,6 @@ export class AdminDashboardContainerComponent {
   store = inject(StoreMarketsService);
 
   private currentUser = this.localStorageService.getUserSettings();
-  ngOnInit() {
-
-  }
 
   public getAllPlans() {
     this.dashServices.getPlans();

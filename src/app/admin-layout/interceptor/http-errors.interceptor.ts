@@ -4,7 +4,6 @@ import { HttpErrors } from './http-error.config';
 import { inject } from '@angular/core';
 
 import { ToastService } from 'src/app/shared/services/toasts.service';
-import { Router } from '@angular/router';
 import { AuthService } from '../auth/services/auth.service';
 
 export const httpErrorsInterceptor: HttpInterceptorFn = (req, next) => {

@@ -1,4 +1,4 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +8,6 @@ export class StoreUsersService {
   public selectAllUsers = signal<any>([]);
 
   private dataIsLoadingAllUsers = signal<boolean>(false);
-
-  constructor() {
-  }
 
   setIsLoadingAllUsers(data: boolean) {
     this.dataIsLoadingAllUsers.set(data);
