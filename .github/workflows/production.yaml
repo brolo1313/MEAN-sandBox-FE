@@ -20,6 +20,7 @@ jobs:
       - name: Test lint
         run: npm run lint
   Build:
+    needs: [Test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,7 +35,7 @@ jobs:
           name: build-artifacts
           path: dist/browser
   Deploy-Vercel:
-      needs: [Test, Build]
+      needs: [Build]
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
