@@ -1,64 +1,104 @@
-About `app`:
-Admin-panel for creating and editing personal posts, in addition you can see all created post  by different users, counts of users and counts of users posts.
-For state managment was choosed **Angualr Signals**. 
-Angular Material has been chose as main UI library , moreover bootstrap-grid i use for  grid system.
-I was made decision to adding skeleton for better UX.
+# MEAN Stack Admin Panel
 
-a {
-  text-decoration: none;
-}
+An administrative dashboard built with Angular 17, featuring user authentication, post management, and user analytics. The application uses Angular Signals for state management and provides a modern, responsive user interface.
+
+## Features
+
+### Authentication
+- User registration and login system
+- Google OAuth integration 
+- Password reset functionality with email confirmation 
+- Form validation 
+
+### Dashboard
+- Post management (Create, Read, Update, Delete)
+- Post filtering by title 
+- Post preview functionality
+- Role-based access control (users can only edit/delete their own posts)
+
+### Analytics
+- User statistics and insights
+- Post count tracking per user
+- Total registered users overview
+
+## Project Structure
+
+```
+mean-sandBox-FE/
+├── src/
+│   ├── app/
+│   │   ├── admin-layout/       # Admin dashboard components
+│   │   ├── shared/            # Shared components, services, and utilities
+│   │   ├── app.component.*    # Root component
+│   │   ├── app.config.ts      # App configuration
+│   │   ├── app.routes.ts      # Route definitions
+│   │   └── _redirects         # Routing redirects
+│   ├── assets/               # Static files (images, icons)
+│   ├── environments/         # Environment configurations
+│   ├── styles/              # Global styles and themes
+│   ├── main.ts              # Application entry point
+│   └── index.html           # Main HTML file
+├── .github/                 # GitHub workflows and CI/CD
+├── .vscode/                # VS Code configuration
+├── dist/                   # Production build output
+├── Dockerfile              # Docker configuration
+├── eslint.config.js        # ESLint configuration
+├── proxy.conf.json         # Proxy configuration
+├── angular.json            # Angular CLI configuration
+├── package.json           # Project dependencies and scripts
+└── tsconfig.json         # TypeScript configuration
+```
+
+## Tech Stack
 
 <p align='center'>
- <a href="#">
-    <img style="text-decoration:none" src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" />
-  </a>&nbsp;&nbsp;
-  <a href="#">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
-</a>&nbsp;&nbsp;
-  <a href="#">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
-</a>&nbsp;&nbsp;
-  <a href="#">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white">
-</a>&nbsp;&nbsp;
-  <a href="#">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white">
-</a>&nbsp;&nbsp;
-
+ <img style="text-decoration:none" src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" />&nbsp;&nbsp;
+ <img alt="GitHub Repo stars" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">&nbsp;&nbsp;
+ <img alt="GitHub Repo stars" src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">&nbsp;&nbsp;
+ <img alt="GitHub Repo stars" src="https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white">&nbsp;&nbsp;
+ <img alt="GitHub Repo stars" src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white">&nbsp;&nbsp;
 </p>
 
+- **Framework**: Angular 17
+- **State Management**: Angular Signals
+- **UI Libraries**: 
+  - Angular Material
+  - Bootstrap Grid System
+- **Features**:
+  - Skeleton Loading
+  - Responsive Design
+  - Type-safe Development
 
-**Login / registration / reset-password page**: 
-- have ability to sing-in by your own credentials , wich you  will recieve  after registration OR use google authorization :white_check_mark:;
-- have ability to reset your password and take new on your email :white_check_mark:;
-- forms validation :white_check_mark:
+## Getting Started
 
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/brolo1313/mean-sandBox-FE.git
+   # or using SSH
+   git clone git@github.com:brolo1313/mean-sandBox-FE.git
+   ```
 
-**Amin/dashboard page**: 
-- have ability to filter created posts by: name (назва) :white_check_mark:.
-- have ability to create, edit, delete and preview posts (only your own posts can be edited or deleted) :white_check_mark:;
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-**Admin/contacts page**: 
-- list of total registered users with numbers of created posts them :white_check_mark:.
+3. Start the development server:
+   ```bash
+   ng serve
+   ```
 
-*Responsive design*
+4. Open your browser and navigate to `http://localhost:4200`
 
-# Amin-post-panel client
+## Development
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
 
-Clone this repository by SSH: `git@github.com:brolo1313/mean-sandBox-FE.git` or `https://github.com/brolo1313/mean-sandBox-FE.git`.
-Then run `npm i`.
+For detailed development instructions, please refer to the [Angular CLI Overview and Command Reference](https://angular.io/cli).
 
-## Development Environment
-Run `npm run dev` for a dev server. Navigate to http://localhost:4202/. The application will automatically reload if you change any of the source files.
+## Responsive Design
 
-## Production Environment
-Run `npm run prod` for a production server. Navigate to http://localhost:4201. The application will automatically reload if you change any of the source files.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The application is fully responsive and optimized for various screen sizes, providing a consistent user experience across desktop and mobile devices.
 
 ## DEMO
 
