@@ -29,7 +29,6 @@ export class StoreMarketsService {
 
 
   storedAllMarketsList(data: IPlan[]) {
-    console.log('storedAllMarketsList', data);
     this.selectAllMarketsList.set(data);
   }
 

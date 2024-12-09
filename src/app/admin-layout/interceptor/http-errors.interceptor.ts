@@ -40,7 +40,6 @@ export const httpErrorsInterceptor: HttpInterceptorFn = (req, next) => {
       if (Object.prototype.hasOwnProperty.call(HttpErrors, errorKey)) {
         let found = false;
         HttpErrors[errorKey].map((obj: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
-          console.log('catchError', obj);
           const message = errorName === 'app_err_default' && errorMessage ? errorMessage : obj.notification;
 
           openSnackBar(message, obj.code);
