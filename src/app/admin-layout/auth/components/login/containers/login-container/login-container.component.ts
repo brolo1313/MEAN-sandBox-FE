@@ -20,7 +20,7 @@ import { ToastService } from 'src/app/shared/services/toasts.service';
   templateUrl: './login-container.component.html',
   styleUrls: ['./login-container.component.scss'],
 })
-export class AdminLoginContainer {
+export class AdminLoginContainerComponent {
   private route = inject(ActivatedRoute);
   private localStorageService = inject(LocalStorageService);
   private router = inject(Router);

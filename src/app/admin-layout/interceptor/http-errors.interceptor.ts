@@ -11,7 +11,7 @@ export const httpErrorsInterceptor: HttpInterceptorFn = (req, next) => {
   const toast = inject(ToastService);
   const authService = inject(AuthService);
   
-  const openSnackBar = (message: any, status = '') => toast.openSnackBar(message, 'error');
+  const openSnackBar = (message: any, status = 'error') => toast.openSnackBar(message, status);
 
   const localeStorage = localStorage?.getItem('auth');
   const accessToken = localeStorage ? JSON.parse(localeStorage)?.userSettings?.accessToken : null;
@@ -37,9 +37,9 @@ export const httpErrorsInterceptor: HttpInterceptorFn = (req, next) => {
 
       const errorKey = Object.keys(error.error)[0];
 
-      if (HttpErrors.hasOwnProperty(errorKey)) {
+      if (Object.prototype.hasOwnProperty.call(HttpErrors, errorKey)) {
         let found = false;
-        HttpErrors[errorKey].map((obj: any, index: any) => {
+        HttpErrors[errorKey].map((obj: any) => {
           const message = errorName === 'app_err_default' && errorMessage ? errorMessage : obj.notification;
 
           openSnackBar(message, obj.code);

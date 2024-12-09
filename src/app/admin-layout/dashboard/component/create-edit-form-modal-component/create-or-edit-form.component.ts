@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { QRCodeModule } from 'angularx-qrcode';
@@ -31,10 +31,6 @@ export class AdminCreateOrEditFormComponent implements OnInit {
 
   public copiedHint = 'Скопійовано';
   public qrCodeDownloadLink: SafeUrl = "";
-
-
-
-  @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   public locationForm: UntypedFormGroup = this.fb.group({
     title: [{ value: '', disabled: false }, [Validators.required]],
@@ -81,7 +77,8 @@ export class AdminCreateOrEditFormComponent implements OnInit {
   }
 
   showTooltip(tooltip: any, copiedHint: string) {
-    // tooltip.open({ copiedHint });
+      console.log('tooltip', tooltip);
+      console.log('copiedHint',copiedHint);
   }
 
   private fillForm(data: any) {
