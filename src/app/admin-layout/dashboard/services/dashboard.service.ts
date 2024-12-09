@@ -26,8 +26,8 @@ export class DashboardService {
 
   public getPlans() {
     this.store.setDataIsLoadingMarketsProfilesList(true);
-    return this.http.get(`${environment.apiUrl}/plans`).subscribe(
-      (response) => {
+    return this.http.get<IPlan[]>(`${environment.apiUrl}/plans`).subscribe(
+      (response: IPlan[]) => {
         this.store.storedAllMarketsList(response)
         this.store.setDataIsLoadingMarketsProfilesList(false);
       },
@@ -79,9 +79,9 @@ export class DashboardService {
 
   public editPlan(data: {body: IPlan, id: string}) {
     this.store.setIsLoadingAfterCrudOperation(true);
-    return this.http.put(`${environment.apiUrl}/plan/${data.id}`, data.body, {
+    return this.http.put<IPlan>(`${environment.apiUrl}/plan/${data.id}`, data.body, {
     }).subscribe(
-      (updatedPlan) => {
+      (updatedPlan: IPlan) => {
         this.store.updateMarketProfile(updatedPlan);
         this.store.setIsLoadingAfterCrudOperation(false);
         this.toastService.openSnackBar('Редагування успішне', 'successful-edit', 'top');

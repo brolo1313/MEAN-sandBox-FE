@@ -15,14 +15,12 @@ export interface USER_CREDENTIALS {
   providedIn: 'root'
 })
 export class ProfileService {
-  public user: any;
-
   http = inject(HttpClient);
   router = inject(Router);
   toastService = inject(ToastService);
   store = inject(StoreMarketsService);
 
-  public changeProfilePassword(data: any) {
+  public changeProfilePassword(data: { id: string, body: { oldPassword: string, newPassword: string, confirmPassword: string } }) {
     return this.http.put(`${environment.apiUrl}/change-password?id=${data.id}`, data.body).subscribe(
       () => {
         this.toastService.openSnackBar('Пароль було змінено', 'successful', 'top');

@@ -35,9 +35,9 @@ export class DashboardListComponent implements OnInit {
   @Output() getAllPlans = new EventEmitter();
 
 
-trackById(index: number, plan: IPlan): number | undefined | string {
-  return plan.id;
-}
+  trackById(index: number, plan: IPlan): number | undefined | string {
+    return plan.id;
+  }
   public searchText!: string;
 
   ngOnInit() {
@@ -54,7 +54,7 @@ trackById(index: number, plan: IPlan): number | undefined | string {
     });
 
     dialogRef.afterClosed().pipe(
-      filter((data: any) => !!data),
+      filter((data: IPlan) => !!data),
     ).subscribe(result => {
       this.createPlan.emit(result)
     });
@@ -71,7 +71,7 @@ trackById(index: number, plan: IPlan): number | undefined | string {
     });
 
     dialogRef.afterClosed().pipe(
-      filter((data: any) => !!data),
+      filter((data: { result: boolean, id: string }) => !!data),
     ).subscribe(result => {
       this.deletePlan.emit(result)
     });
@@ -89,7 +89,7 @@ trackById(index: number, plan: IPlan): number | undefined | string {
     });
 
     dialogRef.afterClosed().pipe(
-      filter((data: any) => !!data),
+      filter((data: IPlan) => !!data),
     ).subscribe(result => {
       this.editPlan.emit(result)
     });

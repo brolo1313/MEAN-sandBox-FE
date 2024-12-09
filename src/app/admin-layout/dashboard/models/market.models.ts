@@ -1,11 +1,11 @@
 export interface IPlan {
-  id?: number | undefined | string |any,
+  id?: number | undefined | string | any,  // eslint-disable-line @typescript-eslint/no-explicit-any
   logoImage: string,
   title: string,
   details: string,
   coverImage: string,
   link: string,
-  plan_manager?: {}
+  plan_manager?: any // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 export interface AuthData {
@@ -38,12 +38,10 @@ export interface SubMenu {
 export interface NavigationItem {
   id: string;
   link_name: string;
-  type: 'item' | 'group'; 
-  icon: string;
-  path: string | null;
-  sub_menu: SubMenu[];
+  type?: 'item' | 'group';
+  icon?: string;
+  path?: string | null;
+  sub_menu?: SubMenu[];
 }
-
-
 
 export type IAuthState = AuthData | AuthDataGoogle; 
